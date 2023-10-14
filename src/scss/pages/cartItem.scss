@@ -1,0 +1,13 @@
+.cartItem{
+  transition: 0.5s;
+  text-align: center;
+  width: 300px;
+  margin: 0 auto; 
+  padding: 15px;
+  border-radius: 25px;
+  border: solid 1px rgb(87, 124, 155);
+  &:hover{
+    cursor: pointer;
+    transform: translate(0px,-10px);
+  }
+}

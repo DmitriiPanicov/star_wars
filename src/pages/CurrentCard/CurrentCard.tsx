@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCurrentCard } from "../../redux/slices/fetchData";
+import { fetchCurrentCard } from "../../redux/actions";
 import { AppDispatch, RootState } from "../../redux/store";
 import { useNavigate, useParams } from "react-router-dom";
 

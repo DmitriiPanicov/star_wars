@@ -21,12 +21,11 @@ const CardItem: React.FC<CardItemProps> = ({ card }) => {
   };
 
   return (
-    <>
+    <div className="cartItem" onClick={() => openCard()}>
       <p>Name: {card.name}</p>
       <p>Birth Year: {card.birth_year !== "unknown" ? card.birth_year : "UNKNOWN"} </p>
       <p>Skin Color: {card.skin_color}</p>
-      <button onClick={() => openCard()}>открыть карточку</button>
-    </>
+    </div>
   );
 };
 

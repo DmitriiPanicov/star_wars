@@ -1,30 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import { PayloadAction } from "@reduxjs/toolkit";
-
-export const fetchCards = createAsyncThunk<[], any>(
-  "fetchData/fetchCards",
-  async ({ value }: { value: string }, thunkAPI) => {
-    const tt: any = thunkAPI.getState();
-    console.log(tt.cards.currentPage.toString());
-    const res = await axios.get(
-      `https://swapi.dev/api/people/?${
-        value ? `search=${value}&` : ""
-      }${`page=${tt.cards.currentPage.toString()}`}`
-    );
-    console.log(res.data);
-    return res.data.results;
-  }
-);
-
-export const fetchCurrentCard = createAsyncThunk<CurrentCardType, number>(
-  "fetchData/fetchCurrentCard",
-  async (id) => {
-    const res = await axios.get(`https://swapi.dev/api/people/${id}`);
-    console.log(res.data);
-    return res.data;
-  }
-);
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchCards, fetchCurrentCard } from "../actions";
 
 type CurrentCardType = {
   name: string;
@@ -52,6 +27,9 @@ interface dataState {
   currentCardStatus: string;
   currentPage: number;
   value: string;
+  numberOfCards: number;
+  prevPage: string | null;
+  nextPage: string | null;
 }
 
 const initialState: dataState = {
@@ -77,6 +55,9 @@ const initialState: dataState = {
   },
   currentCardStatus: "loading", //loading | success | error
   currentPage: 1,
+  numberOfCards: 0,
+  prevPage: "",
+  nextPage: "",
   value: "",
 };
 
@@ -96,6 +77,10 @@ export const cardsSlice = createSlice({
       state.value = action.payload;
       console.log("action.payload: ", action.payload);
     },
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+      console.log("action.payload: ", action.payload);
+    },
   },
 
   extraReducers: (builder) => {
@@ -105,7 +90,11 @@ export const cardsSlice = createSlice({
 
     builder.addCase(fetchCards.fulfilled, (state, action) => {
       state.cardsStatus = "success";
-      state.cards = action.payload;
+      state.cards = action.payload.results;
+      state.numberOfCards = action.payload.count;
+      state.nextPage = action.payload.next;
+      state.prevPage = action.payload.previous;
+      console.log(action.payload);
     });
 
     builder.addCase(fetchCards.rejected, (state) => {
@@ -152,6 +141,7 @@ export const cardsSlice = createSlice({
   // },
 });
 
-export const { increment, decrement, setValue } = cardsSlice.actions;
+export const { increment, decrement, setValue, setCurrentPage } =
+  cardsSlice.actions;
 
 export default cardsSlice.reducer;

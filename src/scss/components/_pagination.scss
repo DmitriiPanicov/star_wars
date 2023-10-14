@@ -1,0 +1,28 @@
+.pagination {
+  display: flex;
+  column-gap: 10px;
+  justify-content: center;
+  padding-top: 20px;
+
+  button {
+    color: #577c9b;
+    padding: 0px 5px;
+    cursor: pointer;
+    border-radius: 25px;
+    border: none;
+    &:hover {
+      background-color: #577c9b;
+      color: #0dceff;
+    }
+  }
+
+  &__arrow {
+    display: inline-block;
+    line-height: 20px;
+  }
+
+  .active {
+    background-color: #577c9b;
+    color: #0dceff;
+  }
+}

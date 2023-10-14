@@ -1,0 +1,15 @@
+@import 'pages/home.scss';
+@import 'components/reset';
+@import 'pages/cartItem.scss';
+@import 'components/container';
+@import 'components/pagination';
+@import 'components/search';
+
+body {
+  // background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  // animation: gradient 15s ease infinite;
+  box-sizing: border-box;
+  background-color: rgb(240, 236, 236);
+}
+
+
