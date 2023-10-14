@@ -25,6 +25,7 @@ const ArrayOfPages: React.FC = () => {
           className={`${i + 1 === currentPage ? "active" : ""}`}
           onClick={() => onClickPage(i)}
           disabled={cardsStatus === "loading"}
+          key={i}
         >
           {i + 1}
         </button>

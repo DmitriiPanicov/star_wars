@@ -1,14 +1,13 @@
 import React from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 
+import { Blocks } from "react-loader-spinner";
 import { fetchCards } from "../../redux/actions";
-
+import Search from "../../components/Search/Search";
 import CardItem from "../../components/CardItem/CardItem";
 import { AppDispatch, RootState } from "../../redux/store";
-
 import Pagination from "../../components/Pagination/Pagination";
-import { Blocks } from "react-loader-spinner";
-import Search from "../../components/Search/Search";
 
 const Home: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
