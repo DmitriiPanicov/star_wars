@@ -1,0 +1,35 @@
+.currentPage {
+  position: relative;
+  &__info {
+    display: flex;
+    column-gap: 30px;
+  }
+
+  &__icon {
+    width: 105px;
+    height: 105px;
+  }
+
+  &__info_column {
+    p {
+      font-family: "Space Mono";
+      font-size: 18px;
+    }
+  }
+
+  button {
+    position: absolute;
+    top: 30px;
+    left: -70px;
+    border: none;
+    transition: 0.5s;
+    cursor: pointer;
+    &:hover {
+      transform: translate(-10px, 0px);
+    }
+    svg {
+      height: 50px;
+      width: 50px;
+    }
+  }
+}

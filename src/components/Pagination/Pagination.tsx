@@ -1,13 +1,11 @@
 import React from "react";
+
 import { useSelector, useDispatch } from "react-redux";
-import { RootState, AppDispatch } from "../../redux/store";
-import {
-  increment,
-  decrement,
-  setCurrentPage,
-} from "../../redux/slices/fetchData";
-import { fetchCards } from "../../redux/actions";
+
 import ArrayOfPages from "./ArrayOfPages";
+import { fetchCards } from "../../redux/actions";
+import { RootState, AppDispatch } from "../../redux/store";
+import { increment, decrement } from "../../redux/slices/fetchData";
 
 const Pagination: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -43,9 +41,7 @@ const Pagination: React.FC = () => {
           className="pagination__arrow"
           onClick={onClickNext}
           disabled={cardsStatus === "loading"}
-        >
-          {`>`}
-        </button>
+        >{`>`}</button>
       ) : (
         ""
       )}

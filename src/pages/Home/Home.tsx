@@ -1,8 +1,8 @@
 import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-
 import { Blocks } from "react-loader-spinner";
+
 import { fetchCards } from "../../redux/actions";
 import Search from "../../components/Search/Search";
 import CardItem from "../../components/CardItem/CardItem";
@@ -20,7 +20,7 @@ const Home: React.FC = () => {
   }, []);
 
   if (cardsStatus === "error") {
-    <span>ERROR</span>;
+    alert("Oops, we got some problems");
   }
 
   return (
@@ -33,15 +33,20 @@ const Home: React.FC = () => {
           height="80"
           width="80"
           ariaLabel="blocks-loading"
-          wrapperStyle={{}}
           wrapperClass="blocks-wrapper"
         />
       ) : (
-        <div className="cardItems-grid">
-          {cards.length ? cards.map((card) => (
-            <CardItem key={card["name"]} card={card} />
-          )) : 'Nothing found for your search'}
-        </div>
+        <>
+          {cards.length ? (
+            <div className="cardItems-grid">
+              {cards.map((card) => (
+                <CardItem key={card["name"]} card={card} />
+              ))}
+            </div>
+          ) : (
+            "Nothing found for your search"
+          )}
+        </>
       )}
     </>
   );

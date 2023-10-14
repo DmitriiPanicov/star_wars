@@ -1,8 +1,12 @@
 import React from "react";
+
 import { useSelector, useDispatch } from "react-redux";
+
+import { fetchCards } from "../../redux/actions";
 import { RootState, AppDispatch } from "../../redux/store";
 import { setCurrentPage } from "../../redux/slices/fetchData";
-import { fetchCards } from "../../redux/actions";
+
+const CARDS_PER_PAGE = 10;
 
 const ArrayOfPages: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -16,7 +20,7 @@ const ArrayOfPages: React.FC = () => {
     dispatch(fetchCards({ value }));
   };
 
-  const numberOfPages = Math.ceil(numberOfCards / 10);
+  const numberOfPages = Math.ceil(numberOfCards / CARDS_PER_PAGE);
 
   return (
     <>

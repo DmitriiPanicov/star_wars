@@ -1,7 +1,6 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchCards = createAsyncThunk<any, any>(
   "fetchData/fetchCards",
@@ -12,7 +11,6 @@ export const fetchCards = createAsyncThunk<any, any>(
         value ? `search=${value}&` : ""
       }${`page=${state.cards.currentPage.toString()}`}`
     );
-    console.log(res.data);
     return res.data;
   }
 );
@@ -21,7 +19,6 @@ export const fetchCurrentCard = createAsyncThunk<any, number>(
   "fetchData/fetchCurrentCard",
   async (id) => {
     const res = await axios.get(`https://swapi.dev/api/people/${id}`);
-    // console.log(res.data);
     return res.data;
   }
 );

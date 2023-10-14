@@ -3,6 +3,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+  }
+  &-refresh {
+    position: absolute;
+    top: 0;
+    left: -20px;
+    cursor: pointer;
+    &:hover {
+      color: rgb(87, 124, 155);
+    }
   }
   &-input {
     border: none;
@@ -11,18 +21,17 @@
     outline: 0;
     transition: 2s;
     border-bottom: 1px solid inherit;
-    &:focus{
+    &:focus {
       border-bottom: 1px solid rgb(87, 124, 155);
     }
-
   }
   &-button {
     cursor: pointer;
     border: none;
     height: 13px;
     width: 13px;
-    &:hover{
-      color:rgb(87, 124, 155);
+    &:hover {
+      color: rgb(87, 124, 155);
     }
   }
 }

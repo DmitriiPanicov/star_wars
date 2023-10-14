@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 import { fetchCards, fetchCurrentCard } from "../actions";
 
 type CurrentCardType = {
@@ -67,19 +68,18 @@ export const cardsSlice = createSlice({
   reducers: {
     increment: (state: any) => {
       state.currentPage = state.currentPage + 1;
-      console.log(state.currentPage);
     },
+
     decrement: (state: any) => {
       state.currentPage = state.currentPage - 1;
-      console.log(state.currentPage);
     },
+
     setValue: (state, action) => {
       state.value = action.payload;
-      console.log("action.payload: ", action.payload);
     },
+
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload;
-      console.log("action.payload: ", action.payload);
     },
   },
 
@@ -91,10 +91,9 @@ export const cardsSlice = createSlice({
     builder.addCase(fetchCards.fulfilled, (state, action) => {
       state.cardsStatus = "success";
       state.cards = action.payload.results;
-      state.numberOfCards = action.payload.count;
       state.nextPage = action.payload.next;
       state.prevPage = action.payload.previous;
-      console.log(action.payload);
+      state.numberOfCards = action.payload.count;
     });
 
     builder.addCase(fetchCards.rejected, (state) => {
@@ -114,31 +113,6 @@ export const cardsSlice = createSlice({
       state.currentCardStatus = "error";
     });
   },
-
-  // extraReducers: {
-  //   [fetchCards.pending]: (state) => {
-  //     state.cardsStatus = "loading";
-  //     console.log("LOADING");
-  //   },
-  //   [fetchCards.fulfilled]: (state, action) => {
-  //     state.cardsStatus = "success";
-  //     state.cards = action.payload;
-  //   },
-  //   [fetchCards.rejected]: (state) => {
-  //     state.cardsStatus = "error";
-  //   },
-  //   [fetchCurrentCard.pending]: (state) => {
-  //     state.currentCardStatus = "loading";
-  //     console.log("LOADING");
-  //   },
-  //   [fetchCurrentCard.fulfilled]: (state, action) => {
-  //     state.currentCardStatus = "success";
-  //     state.currentCard = action.payload;
-  //   },
-  //   [fetchCurrentCard.rejected]: (state) => {
-  //     state.currentCardStatus = "error";
-  //   },
-  // },
 });
 
 export const { increment, decrement, setValue, setCurrentPage } =
